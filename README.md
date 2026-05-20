@@ -86,18 +86,6 @@ kos-management/
 
 ---
 
-## 📸 Screenshot (Opsional)
-
-_Tambahkan tangkapan layar halaman utama, dashboard admin, dll._
-
----
-
-## 📝 Tugas
-
-Proyek ini dibuat sebagai bagian dari mata kuliah **Rekayasa Perangkat Lunak (RPL)** semester 3.
-
----
-
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](LICENSE).
