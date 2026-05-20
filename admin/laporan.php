@@ -33,18 +33,7 @@ $laporan_bulanan = $db->query("SELECT DATE_FORMAT(tanggal_booking, '%Y-%m') AS b
 <?php include '../includes/navbar.php'; ?>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="kamar.php">Kelola Kamar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="booking.php">Data Booking</a></li>
-                    <li class="nav-item"><a class="nav-link" href="verifikasi.php">Verifikasi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="users.php">Kelola User</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="laporan.php">Laporan</a></li>
-                </ul>
-            </div>
-        </nav>
+        <?php include '../includes/sidebar_admin.php'; ?>
         <main class="col-md-10 ms-sm-auto px-md-4">
             <h2 class="mt-3">Laporan</h2>
             <h4>Penghuni Aktif</h4>
