@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Redirect ke index.php jika direktori diminta
+DirectoryIndex index.php
+
+# Opsional: hilangkan ekstensi .php (aktifkan jika diperlukan, tapi hati-hati)
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteCond %{REQUEST_FILENAME}.php -f
+# RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# Error document
+ErrorDocument 404 /kos-management/index.php
