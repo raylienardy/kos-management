@@ -1,14 +1,36 @@
-/* Styling kustom */
+/* style.css */
+html,
 body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
   background-color: #f8f9fa;
 }
 
-.navbar-brand {
-  font-weight: bold;
+/* Konten utama akan mengisi ruang yang tersedia */
+.content-wrapper {
+  flex: 1 0 auto;
 }
 
+/* Footer akan berada di paling bawah */
 footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.05);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* fallback */
+}
+
+.sidebar-dark .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.sidebar-dark .nav-link.active {
+  background-color: #0d6efd; /* primary */
+  border-radius: 5px;
 }

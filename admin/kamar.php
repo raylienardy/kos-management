@@ -104,11 +104,12 @@ $fasilitas_all = $db->query("SELECT * FROM fasilitas")->fetchAll(PDO::FETCH_ASSO
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Kamar - Admin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
 <?php include '../includes/navbar.php'; ?>
-<div class="container-fluid">
+<div class="content-wrapper container-fluid">
     <div class="row">
         <?php include '../includes/sidebar_admin.php'; ?>
         <main class="col-md-10 ms-sm-auto px-md-4">
@@ -201,7 +202,7 @@ $fasilitas_all = $db->query("SELECT * FROM fasilitas")->fetchAll(PDO::FETCH_ASSO
 </div>
 
 <?php include '../includes/footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 <?php if ($edit): ?>
 <script>
     // Jika edit, buka modal otomatis

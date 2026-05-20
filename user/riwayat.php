@@ -26,12 +26,12 @@ $riwayat = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat Booking - KosManagement</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <?php include '../includes/navbar.php'; ?>
-    <div class="container mt-4">
+    <div class="content-wrapper container mt-4">
         <h3>Riwayat Booking</h3>
         <?php if ($riwayat): ?>
             <table class="table table-striped">
@@ -79,6 +79,6 @@ $riwayat = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endif; ?>
     </div>
     <?php include '../includes/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

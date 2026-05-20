@@ -85,12 +85,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_booking'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pembayaran - KosManagement</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <?php include '../includes/navbar.php'; ?>
-    <div class="container mt-4" style="max-width: 600px;">
+    <div class="content-wrapper container mt-4" style="max-width: 600px;">
         <h3>Upload Bukti Pembayaran</h3>
         <?php if ($error): ?>
             <div class="alert alert-danger"><?= $error ?></div>
@@ -136,6 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_booking'])) {
         <?php endif; ?>
     </div>
     <?php include '../includes/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

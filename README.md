@@ -101,7 +101,3 @@ Proyek ini dibuat sebagai bagian dari mata kuliah **Rekayasa Perangkat Lunak (RP
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah [MIT License](LICENSE).
-
-```
-
-```
