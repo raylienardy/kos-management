@@ -61,47 +61,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $success = true;
     }
 }
+
+
+$page_title = 'Booking Kamar - KosManagement';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Kamar - KosManagement</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <?php include '../includes/navbar.php'; ?>
-    <div class="content-wrapper container mt-4" style="max-width: 600px;">
-        <?php if ($success): ?>
-            <div class="alert alert-success">
-                <h5>Booking berhasil!</h5>
-                <p>Total biaya: <strong>Rp <?= number_format($total, 0, ',', '.') ?></strong></p>
-                <p>Silakan lanjutkan ke pembayaran dengan transfer ke:</p>
-                <p><strong>Bank BCA 1234567890 a.n. KosManagement</strong></p>
-                <a href="pembayaran.php?id_booking=<?= $booking_id ?>" class="btn btn-primary">Upload Bukti Pembayaran</a>
-            </div>
-        <?php else: ?>
-            <h3>Booking Kamar: <?= htmlspecialchars($kamar['nama_kamar']) ?></h3>
-            <p>Harga per bulan: <strong>Rp <?= number_format($kamar['harga'], 0, ',', '.') ?></strong></p>
-            <?php if ($error): ?>
-                <div class="alert alert-danger"><?= $error ?></div>
-            <?php endif; ?>
-            <form method="POST">
-                <div class="mb-3">
-                    <label>Tanggal Masuk</label>
-                    <input type="date" name="tanggal_masuk" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label>Durasi Sewa (bulan)</label>
-                    <input type="number" name="durasi_sewa" class="form-control" min="1" required>
-                </div>
-                <button type="submit" class="btn btn-success">Booking Sekarang</button>
-            </form>
+<div class="content-wrapper container mt-4" style="max-width: 600px;">
+    <?php if ($success): ?>
+        <div class="alert alert-success">
+            <h5>Booking berhasil!</h5>
+            <p>Total biaya: <strong>Rp <?= number_format($total, 0, ',', '.') ?></strong></p>
+            <p>Silakan lanjutkan ke pembayaran dengan transfer ke:</p>
+            <p><strong>Bank BCA 1234567890 a.n. KosManagement</strong></p>
+            <a href="pembayaran.php?id_booking=<?= $booking_id ?>" class="btn btn-primary">Upload Bukti Pembayaran</a>
+        </div>
+    <?php else: ?>
+        <h3>Booking Kamar: <?= htmlspecialchars($kamar['nama_kamar']) ?></h3>
+        <p>Harga per bulan: <strong>Rp <?= number_format($kamar['harga'], 0, ',', '.') ?></strong></p>
+        <?php if ($error): ?>
+            <div class="alert alert-danger"><?= $error ?></div>
         <?php endif; ?>
-    </div>
-    <?php include '../includes/footer.php'; ?>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <form method="POST">
+            <div class="mb-3">
+                <label>Tanggal Masuk</label>
+                <input type="date" name="tanggal_masuk" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Durasi Sewa (bulan)</label>
+                <input type="number" name="durasi_sewa" class="form-control" min="1" required>
+            </div>
+            <button type="submit" class="btn btn-success">Booking Sekarang</button>
+        </form>
+    <?php endif; ?>
+</div>
+<?php include '../includes/footer.php'; ?>

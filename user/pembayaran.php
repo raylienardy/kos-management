@@ -78,64 +78,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_booking'])) {
         }
     }
 }
-?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pembayaran - KosManagement</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <?php include '../includes/navbar.php'; ?>
-    <div class="content-wrapper container mt-4" style="max-width: 600px;">
-        <h3>Upload Bukti Pembayaran</h3>
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><?= $error ?></div>
-        <?php endif; ?>
-        <?php if ($success): ?>
-            <div class="alert alert-success"><?= $success ?></div>
-        <?php endif; ?>
 
-        <?php if ($booking): ?>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5><?= htmlspecialchars($booking['nama_kamar']) ?></h5>
-                    <p>Total: <strong>Rp <?= number_format($booking['total_harga'], 0, ',', '.') ?></strong></p>
-                    <?php if ($booking['bukti_transfer']): ?>
-                        <p>Status: 
-                            <span class="badge bg-<?= $booking['status_verifikasi'] == 'valid' ? 'success' : ($booking['status_verifikasi'] == 'tidak_valid' ? 'danger' : 'warning') ?>">
-                                <?= ucfirst($booking['status_verifikasi']) ?>
-                            </span>
-                        </p>
-                        <p>File bukti: <a href="../uploads/pembayaran/<?= $booking['bukti_transfer'] ?>" target="_blank">Lihat</a></p>
-                        <?php if ($booking['status_verifikasi'] == 'tidak_valid'): ?>
-                            <div class="alert alert-warning">Pembayaran ditolak. Silakan upload ulang.</div>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <form method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id_booking" value="<?= $booking['id_booking'] ?>">
-                            <div class="mb-3">
-                                <label>Pilih file bukti transfer (JPG/PNG/PDF, max 2MB)</label>
-                                <input type="file" name="bukti" class="form-control" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
-                        </form>
+
+$page_title = 'Pembayaran - KosManagement';
+include '../includes/header.php';
+?>
+<div class="content-wrapper container mt-4" style="max-width: 600px;">
+    <h3>Upload Bukti Pembayaran</h3>
+    <?php if ($error): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif; ?>
+    <?php if ($success): ?>
+        <div class="alert alert-success"><?= $success ?></div>
+    <?php endif; ?>
+
+    <?php if ($booking): ?>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5><?= htmlspecialchars($booking['nama_kamar']) ?></h5>
+                <p>Total: <strong>Rp <?= number_format($booking['total_harga'], 0, ',', '.') ?></strong></p>
+                <?php if ($booking['bukti_transfer']): ?>
+                    <p>Status: 
+                        <span class="badge bg-<?= $booking['status_verifikasi'] == 'valid' ? 'success' : ($booking['status_verifikasi'] == 'tidak_valid' ? 'danger' : 'warning') ?>">
+                            <?= ucfirst($booking['status_verifikasi']) ?>
+                        </span>
+                    </p>
+                    <p>File bukti: <a href="../uploads/pembayaran/<?= $booking['bukti_transfer'] ?>" target="_blank">Lihat</a></p>
+                    <?php if ($booking['status_verifikasi'] == 'tidak_valid'): ?>
+                        <div class="alert alert-warning">Pembayaran ditolak. Silakan upload ulang.</div>
                     <?php endif; ?>
-                </div>
+                <?php else: ?>
+                    <form method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id_booking" value="<?= $booking['id_booking'] ?>">
+                        <div class="mb-3">
+                            <label>Pilih file bukti transfer (JPG/PNG/PDF, max 2MB)</label>
+                            <input type="file" name="bukti" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
+                <?php endif; ?>
             </div>
-        <?php elseif (isset($pending_list)): ?>
-            <p>Pilih booking yang belum diupload bukti:</p>
-            <?php foreach ($pending_list as $item): ?>
-                <a href="pembayaran.php?id_booking=<?= $item['id_booking'] ?>" class="list-group-item list-group-item-action">
-                    <?= htmlspecialchars($item['nama_kamar']) ?> - Rp <?= number_format($item['total_harga'], 0, ',', '.') ?>
-                </a>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
-    <?php include '../includes/footer.php'; ?>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        </div>
+    <?php elseif (isset($pending_list)): ?>
+        <p>Pilih booking yang belum diupload bukti:</p>
+        <?php foreach ($pending_list as $item): ?>
+            <a href="pembayaran.php?id_booking=<?= $item['id_booking'] ?>" class="list-group-item list-group-item-action">
+                <?= htmlspecialchars($item['nama_kamar']) ?> - Rp <?= number_format($item['total_harga'], 0, ',', '.') ?>
+            </a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+<?php include '../includes/footer.php'; ?>

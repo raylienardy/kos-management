@@ -16,18 +16,11 @@ if (isset($_GET['hapus'])) {
 }
 
 $users = $db->query("SELECT id_user, nama, email, no_hp, created_at FROM users WHERE role='penyewa' ORDER BY created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Kelola User - Admin';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola User - Admin</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
-<body>
-<?php include '../includes/navbar.php'; ?>
 <div class="content-wrapper container-fluid">
     <div class="row">
         <?php include '../includes/sidebar_admin.php'; ?>
@@ -51,6 +44,3 @@ $users = $db->query("SELECT id_user, nama, email, no_hp, created_at FROM users W
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

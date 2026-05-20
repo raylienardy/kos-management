@@ -20,18 +20,11 @@ $stmt = $db->prepare("SELECT b.*, u.nama AS nama_user, k.nama_kamar
                       $where ORDER BY b.tanggal_booking DESC");
 $stmt->execute($params);
 $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Data Booking - Admin';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Booking - Admin</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
-<body>
-<?php include '../includes/navbar.php'; ?>
 <div class="content-wrapper container-fluid">
     <div class="row">
         <?php include '../includes/sidebar_admin.php'; ?>
@@ -63,6 +56,3 @@ $bookings = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

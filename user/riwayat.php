@@ -19,66 +19,56 @@ $stmt = $db->prepare("SELECT b.*, k.nama_kamar, k.foto, p.status_verifikasi,
                       ORDER BY b.tanggal_booking DESC");
 $stmt->execute([':id_user' => $id_user]);
 $riwayat = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Riwayat Booking - KosManagement';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat Booking - KosManagement</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <?php include '../includes/navbar.php'; ?>
-    <div class="content-wrapper container mt-4">
-        <h3>Riwayat Booking</h3>
-        <?php if ($riwayat): ?>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Kamar</th>
-                        <th>Tanggal Masuk</th>
-                        <th>Durasi</th>
-                        <th>Total</th>
-                        <th>Status Booking</th>
-                        <th>Pembayaran</th>
-                        <th>Bukti</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($riwayat as $r): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($r['nama_kamar']) ?></td>
-                        <td><?= date('d/m/Y', strtotime($r['tanggal_masuk'])) ?></td>
-                        <td><?= $r['durasi_sewa'] ?> bulan</td>
-                        <td>Rp <?= number_format($r['total_harga'], 0, ',', '.') ?></td>
-                        <td>
-                            <span class="badge bg-<?= $r['status_booking'] == 'diterima' ? 'success' : ($r['status_booking'] == 'ditolak' ? 'danger' : 'warning') ?>">
-                                <?= ucfirst($r['status_booking']) ?>
-                            </span>
-                        </td>
-                        <td>
-                            <span class="badge bg-<?= $r['status_verifikasi'] == 'valid' ? 'success' : ($r['status_verifikasi'] == 'tidak_valid' ? 'danger' : 'secondary') ?>">
-                                <?= ucfirst(str_replace('_', ' ', $r['status_verifikasi'])) ?>
-                            </span>
-                        </td>
-                        <td>
-                            <?php if ($r['bukti_transfer']): ?>
-                                <a href="../uploads/pembayaran/<?= $r['bukti_transfer'] ?>" target="_blank">Lihat</a>
-                            <?php else: ?>
-                                <a href="pembayaran.php?id_booking=<?= $r['id_booking'] ?>">Upload</a>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <div class="alert alert-info">Belum ada riwayat booking.</div>
-        <?php endif; ?>
-    </div>
-    <?php include '../includes/footer.php'; ?>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<div class="content-wrapper container mt-4">
+    <h3>Riwayat Booking</h3>
+    <?php if ($riwayat): ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Kamar</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Durasi</th>
+                    <th>Total</th>
+                    <th>Status Booking</th>
+                    <th>Pembayaran</th>
+                    <th>Bukti</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($riwayat as $r): ?>
+                <tr>
+                    <td><?= htmlspecialchars($r['nama_kamar']) ?></td>
+                    <td><?= date('d/m/Y', strtotime($r['tanggal_masuk'])) ?></td>
+                    <td><?= $r['durasi_sewa'] ?> bulan</td>
+                    <td>Rp <?= number_format($r['total_harga'], 0, ',', '.') ?></td>
+                    <td>
+                        <span class="badge bg-<?= $r['status_booking'] == 'diterima' ? 'success' : ($r['status_booking'] == 'ditolak' ? 'danger' : 'warning') ?>">
+                            <?= ucfirst($r['status_booking']) ?>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge bg-<?= $r['status_verifikasi'] == 'valid' ? 'success' : ($r['status_verifikasi'] == 'tidak_valid' ? 'danger' : 'secondary') ?>">
+                            <?= ucfirst(str_replace('_', ' ', $r['status_verifikasi'])) ?>
+                        </span>
+                    </td>
+                    <td>
+                        <?php if ($r['bukti_transfer']): ?>
+                            <a href="../uploads/pembayaran/<?= $r['bukti_transfer'] ?>" target="_blank">Lihat</a>
+                        <?php else: ?>
+                            <a href="pembayaran.php?id_booking=<?= $r['id_booking'] ?>">Upload</a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <div class="alert alert-info">Belum ada riwayat booking.</div>
+    <?php endif; ?>
+</div>
+<?php include '../includes/footer.php'; ?>

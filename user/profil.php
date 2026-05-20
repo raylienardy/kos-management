@@ -39,47 +39,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userData = ['nama' => $nama, 'email' => $userData['email'], 'no_hp' => $no_hp, 'alamat' => $alamat];
     }
 }
+
+
+$page_title = 'Profil - KosManagement';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil - KosManagement</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-</head>
-<body>
-    <?php include '../includes/navbar.php'; ?>
-    <div class="content-wrapper container mt-4" style="max-width: 500px;">
-        <h3>Edit Profil</h3>
-        <?php if ($error): ?>
-            <div class="alert alert-danger"><?= $error ?></div>
-        <?php elseif ($success): ?>
-            <div class="alert alert-success"><?= $success ?></div>
-        <?php endif; ?>
-        <form method="POST">
-            <div class="mb-3">
-                <label>Nama</label>
-                <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($userData['nama']) ?>" required>
-            </div>
-            <div class="mb-3">
-                <label>Email</label>
-                <input type="email" class="form-control" value="<?= htmlspecialchars($userData['email']) ?>" disabled>
-                <small class="text-muted">Email tidak dapat diubah.</small>
-            </div>
-            <div class="mb-3">
-                <label>No HP</label>
-                <input type="text" name="no_hp" class="form-control" value="<?= htmlspecialchars($userData['no_hp']) ?>" required>
-            </div>
-            <div class="mb-3">
-                <label>Alamat</label>
-                <textarea name="alamat" class="form-control" rows="2" required><?= htmlspecialchars($userData['alamat']) ?></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
-        </form>
-    </div>
-    <?php include '../includes/footer.php'; ?>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<div class="content-wrapper container mt-4" style="max-width: 500px;">
+    <h3>Edit Profil</h3>
+    <?php if ($error): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php elseif ($success): ?>
+        <div class="alert alert-success"><?= $success ?></div>
+    <?php endif; ?>
+    <form method="POST">
+        <div class="mb-3">
+            <label>Nama</label>
+            <input type="text" name="nama" class="form-control" value="<?= htmlspecialchars($userData['nama']) ?>" required>
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" value="<?= htmlspecialchars($userData['email']) ?>" disabled>
+            <small class="text-muted">Email tidak dapat diubah.</small>
+        </div>
+        <div class="mb-3">
+            <label>No HP</label>
+            <input type="text" name="no_hp" class="form-control" value="<?= htmlspecialchars($userData['no_hp']) ?>" required>
+        </div>
+        <div class="mb-3">
+            <label>Alamat</label>
+            <textarea name="alamat" class="form-control" rows="2" required><?= htmlspecialchars($userData['alamat']) ?></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Simpan Perubahan</button>
+    </form>
+</div>
+<?php include '../includes/footer.php'; ?>

@@ -47,18 +47,11 @@ $stmt = $db->query("SELECT b.id_booking, u.nama AS nama_user, k.nama_kamar, b.ta
                     WHERE b.status_booking='pending' AND p.bukti_transfer IS NOT NULL 
                     ORDER BY b.tanggal_booking DESC");
 $pending = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Verifikasi Pembayaran - Admin';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifikasi Pembayaran - Admin</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
-<body>
-<?php include '../includes/navbar.php'; ?>
 <div class="content-wrapper container-fluid">
     <div class="row">
         <?php include '../includes/sidebar_admin.php'; ?>
@@ -89,6 +82,3 @@ $pending = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 <?php include '../includes/footer.php'; ?>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

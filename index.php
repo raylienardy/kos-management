@@ -32,73 +32,61 @@ $sql = "SELECT k.*,
 $stmt = $db->prepare($sql);
 $stmt->execute($params);
 $kamar_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Daftar Kamar - KosManagement';
+include 'includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KosManagement - Daftar Kamar</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <?php include 'includes/navbar.php'; ?>
+<div class="content-wrapper container mt-4">
+    <h2 class="mb-3">Daftar Kamar Tersedia</h2>
+    
+    <!-- Form Pencarian & Filter -->
+    <form method="GET" class="row g-3 mb-4">
+        <div class="col-md-4">
+            <input type="text" name="keyword" class="form-control" placeholder="Cari nama, lokasi..." 
+                    value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="harga_min" class="form-control" placeholder="Harga min" 
+                    value="<?= htmlspecialchars($_GET['harga_min'] ?? '') ?>">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="harga_max" class="form-control" placeholder="Harga max" 
+                    value="<?= htmlspecialchars($_GET['harga_max'] ?? '') ?>">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" name="cari" class="btn btn-primary w-100">Cari</button>
+        </div>
+        <div class="col-md-2">
+            <a href="index.php" class="btn btn-outline-secondary w-100">Reset</a>
+        </div>
+    </form>
 
-    <div class="content-wrapper container mt-4">
-        <h2 class="mb-3">Daftar Kamar Tersedia</h2>
-        
-        <!-- Form Pencarian & Filter -->
-        <form method="GET" class="row g-3 mb-4">
-            <div class="col-md-4">
-                <input type="text" name="keyword" class="form-control" placeholder="Cari nama, lokasi..." 
-                       value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>">
-            </div>
-            <div class="col-md-2">
-                <input type="number" name="harga_min" class="form-control" placeholder="Harga min" 
-                       value="<?= htmlspecialchars($_GET['harga_min'] ?? '') ?>">
-            </div>
-            <div class="col-md-2">
-                <input type="number" name="harga_max" class="form-control" placeholder="Harga max" 
-                       value="<?= htmlspecialchars($_GET['harga_max'] ?? '') ?>">
-            </div>
-            <div class="col-md-2">
-                <button type="submit" name="cari" class="btn btn-primary w-100">Cari</button>
-            </div>
-            <div class="col-md-2">
-                <a href="index.php" class="btn btn-outline-secondary w-100">Reset</a>
-            </div>
-        </form>
-
-        <!-- Daftar Kamar -->
-        <div class="row">
-            <?php if ($kamar_list): ?>
-                <?php foreach ($kamar_list as $kamar): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <img src="uploads/kamar/<?= htmlspecialchars($kamar['foto']) ?>" 
-                                 class="card-img-top" alt="<?= htmlspecialchars($kamar['nama_kamar']) ?>" 
-                                 style="height:200px; object-fit:cover;">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($kamar['nama_kamar']) ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($kamar['deskripsi']) ?></p>
-                                <p><strong>Rp <?= number_format($kamar['harga'], 0, ',', '.') ?> / bulan</strong></p>
-                                <p><small>Ukuran: <?= htmlspecialchars($kamar['ukuran']) ?></small></p>
-                                <p><small>Fasilitas: <?= htmlspecialchars($kamar['fasilitas_list'] ?? '-') ?></small></p>
-                                <a href="<?= BASE_URL ?>detail.php?id=<?= $kamar['id_kamar'] ?>" class="btn btn-primary">Detail</a>
-                            </div>
+    <!-- Daftar Kamar -->
+    <div class="row">
+        <?php if ($kamar_list): ?>
+            <?php foreach ($kamar_list as $kamar): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="uploads/kamar/<?= htmlspecialchars($kamar['foto']) ?>" 
+                              class="card-img-top" alt="<?= htmlspecialchars($kamar['nama_kamar']) ?>" 
+                              style="height:200px; object-fit:cover;">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($kamar['nama_kamar']) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($kamar['deskripsi']) ?></p>
+                            <p><strong>Rp <?= number_format($kamar['harga'], 0, ',', '.') ?> / bulan</strong></p>
+                            <p><small>Ukuran: <?= htmlspecialchars($kamar['ukuran']) ?></small></p>
+                            <p><small>Fasilitas: <?= htmlspecialchars($kamar['fasilitas_list'] ?? '-') ?></small></p>
+                            <a href="<?= BASE_URL ?>detail.php?id=<?= $kamar['id_kamar'] ?>" class="btn btn-primary">Detail</a>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <div class="col-12">
-                    <div class="alert alert-info">Belum ada kamar tersedia.</div>
                 </div>
-            <?php endif; ?>
-        </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="col-12">
+                <div class="alert alert-info">Belum ada kamar tersedia.</div>
+            </div>
+        <?php endif; ?>
     </div>
-
-    <?php include 'includes/footer.php'; ?>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>
+<?php include 'includes/footer.php'; ?>

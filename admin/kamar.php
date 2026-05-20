@@ -97,18 +97,11 @@ $kamar_list = $db->query("SELECT k.*, GROUP_CONCAT(f.nama_fasilitas SEPARATOR ',
                          LEFT JOIN fasilitas f ON kf.id_fasilitas=f.id_fasilitas 
                          GROUP BY k.id_kamar ORDER BY k.created_at DESC")->fetchAll(PDO::FETCH_ASSOC);
 $fasilitas_all = $db->query("SELECT * FROM fasilitas")->fetchAll(PDO::FETCH_ASSOC);
+
+
+$page_title = 'Kelola Kamar - Admin';
+include '../includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Kamar - Admin</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
-<body>
-<?php include '../includes/navbar.php'; ?>
 <div class="content-wrapper container-fluid">
     <div class="row">
         <?php include '../includes/sidebar_admin.php'; ?>
@@ -202,7 +195,6 @@ $fasilitas_all = $db->query("SELECT * FROM fasilitas")->fetchAll(PDO::FETCH_ASSO
 </div>
 
 <?php include '../includes/footer.php'; ?>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
 <?php if ($edit): ?>
 <script>
     // Jika edit, buka modal otomatis
@@ -210,5 +202,3 @@ $fasilitas_all = $db->query("SELECT * FROM fasilitas")->fetchAll(PDO::FETCH_ASSO
     modal.show();
 </script>
 <?php endif; ?>
-</body>
-</html>
