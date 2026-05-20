@@ -12,7 +12,7 @@ if (!isset($page_title)) {
     <title><?= htmlspecialchars($page_title) ?></title>
     <link href="<?= BASE_URL ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/font/bootstrap-icons.css">
 </head>
 <body>
     <?php include __DIR__ . '/navbar.php'; ?>
